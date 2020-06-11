@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- base:css -->
+  <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../../css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../../images/favicon.png" />
+  <script src="echarts/echarts.js"></script>
+</head>
+
+<body>
+  
+  <div class="container-scroller d-flex">
+    <!-- partial:../../partials/_sidebar.html -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item sidebar-category">
+          <p>Navigation</p>
+          <span></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../../searchgame.php">
+            <i class="mdi mdi-view-quilt menu-icon"></i>
+            <span class="menu-title">Search Games </span>
+          </a>
+        </li>
+        <li class="nav-item sidebar-category">
+          <p>Components</p>
+          <span></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../../pages/forms/basic_elements.html">
+            <i class="mdi mdi-view-headline menu-icon"></i>
+            <span class="menu-title">Message Board</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../../pages/charts/chartjs.html">
+            <i class="mdi mdi-chart-pie menu-icon"></i>
+            <span class="menu-title">Charts</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../../pages/tables/basic-table.html">
+            <i class="mdi mdi-grid-large menu-icon"></i>
+            <span class="menu-title">Tables</span>
+          </a>
+        </li>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:../../partials/_navbar.html -->      
+            
+      <nav class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">The Charts</h4>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item">
+              <h4 class="mb-0 font-weight-bold d-none d-xl-block">Mar, 2020 - June , 2020</h4>
+            </li>
+        </div>
+      </nav>      
+      
+      <!-- partial -->
+
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+            <div id="main" style="width: 1300px;height:400px;"></div>
+            <script type="text/javascript">
+                //你的Echarts使用代码
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main'));
+                var option = {
+            backgroundColor: 'gray',
+
+            title: {
+                text: '好评率',
+                left: 'center',
+                top: 20,
+                textStyle: {
+                    color: 'black'
+                }
+            },
+
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+
+            visualMap: {
+                show: false,
+                min: 80,
+                max: 600,
+                inRange: {
+                    colorLightness: [0.5, 1]
+                }
+            },
+            series: [
+                {
+                    name: '好评率',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '50%'],
+                    data: [
+                        {value: 132, name: '95%及以上'},
+                        {value: 186, name: '90%到95%'},
+                        {value: 379, name: '80%到90%'},
+                        {value: 240, name: '60%到80%'},
+                        {value: 46, name: '60%以下'}
+                    ].sort(function (a, b) { return a.value - b.value; }),
+                    roseType: 'radius',
+                    label: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    },
+                    labelLine: {
+                        lineStyle: {
+                            color: 'rgba(255, 255, 255, 0.3)'
+                        },
+                        smooth: 0.2,
+                        length: 10,
+                        length2: 20
+                    },
+                    itemStyle: {
+                        color: '#c23531',
+                        shadowBlur: 200,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    },
+
+                    animationType: 'scale',
+                    animationEasing: 'elasticOut',
+                    animationDelay: function (idx) {
+                        return Math.random() * 200;
+                    }
+                }
+            ]
+        };
+
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+        </script>
+          <div id="container" style="height: 100%"></div>
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+          <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+          <script type="text/javascript">
+            var dom = document.getElementById("container");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            
+            
+            var colorList = [[
+                '#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed',
+                '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0',
+                '#1e90ff', '#ff6347', '#7b68ee', '#d0648a', '#ffd700',
+                '#6b8e23', '#4ea397', '#3cb371', '#b8860b', '#7bd9a5'
+                ],
+                [
+                '#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed',
+                '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0',
+                '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700',
+                '#6b8e23', '#ff00ff', '#3cb371', '#b8860b', '#30e0e0'
+                ],
+                [
+                '#929fff', '#9de0ff', '#ffa897', '#af87fe', '#7dc3fe',
+                '#bb60b2', '#433e7c', '#f47a75', '#009db2', '#024b51', 
+                '#0780cf', '#765005', '#e75840', '#26ccd8', '#3685fe', 
+                '#9977ef', '#f5616f', '#f7b13f', '#f9e264', '#50c48f'
+                ]][2];
+            
+            option = {
+                // 图表标题
+                title: {
+                    show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
+                    text: '"游戏标签分类',//主标题文本，'\n'指定换行
+                    x: 'center',        // 水平安放位置，默认为左对齐，可选为：
+                                      // 'center' ¦ 'left' ¦ 'right'
+                                      // ¦ {number}（x坐标，单位px）
+                    y: 'bottom',             // 垂直安放位置，默认为全图顶端，可选为：
+                                      // 'top' ¦ 'bottom' ¦ 'center'
+                                      // ¦ {number}（y坐标，单位px）
+                    //textAlign: null          // 水平对齐方式，默认根据x设置自动调整
+                    backgroundColor: 'rgba(0,0,0,0)',
+                    borderColor: '#ccc',    // 标题边框颜色
+                    borderWidth: 0,         // 标题边框线宽，单位px，默认为0（无边框）
+                    padding: 5,             // 标题内边距，单位px，默认各方向内边距为5，
+                                            // 接受数组分别设定上右下左边距，同css
+                    itemGap: 10,            // 主副标题纵向间隔，单位px，默认为10，
+                    textStyle: {
+                        fontSize: 18,
+                        fontWeight: 'bolder',
+                        color: '#333'        // 主标题文字颜色
+                    },
+                    subtextStyle: {
+                        color: '#aaa'        // 副标题文字颜色
+                    }
+                },
+                backgroundColor: 'deepskyblue',
+                tooltip: {},
+                animationDurationUpdate: function(idx) {
+                    // 越往后的数据延迟越大
+                    return idx * 100;
+                },
+                animationEasingUpdate: 'bounceIn',
+                color: ['#fff', '#fff', '#fff'],
+                series: [{
+                    type: 'graph',
+                    layout: 'force',
+                    force: {
+                        repulsion: 500,
+                        edgeLength: 10
+                    },
+                    roam: true,
+                    label: {
+                        normal: {
+                            show: true
+                        }
+                    },
+                    data: [{
+                        "name": "Singleplayer",
+                        "value":495,
+                        "symbolSize": 48,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[0],
+                                "color": colorList[0]
+                            }
+                        }
+                    }, {
+                        "name": "Multiplayer",
+            "value":463,
+                        "symbolSize": 73,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[1],
+                                "color": colorList[1]
+                            }
+                        }
+                    }, {
+                        "name": "Action",
+            "value":404,
+                        "symbolSize": 67,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[2],
+                                "color": colorList[2]
+                            }
+                        }
+                    }, {
+                        "name": "Adventure",
+            "value":355,
+                        "symbolSize": 50,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[3],
+                                "color": colorList[3]
+                            }
+                        }
+                    }, {
+                        "name": "Strategy",
+            "value":333,
+                        "symbolSize": 88,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[4],
+                                "color": colorList[4]
+                            }
+                        }
+                    }, {
+                        "name": "Indie",
+            "value":294,
+                        "symbolSize": 55,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[5],
+                                "color": colorList[5]
+                            }
+                        }
+                    }, {
+                        "name": "Co-op",
+            "value":286,
+                        "symbolSize": 70,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[6],
+                                "color": colorList[6]
+                            }
+                        }
+                    }, {
+                        "name": "Open World",
+            "value":274,
+                        "symbolSize": 67,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[7],
+                                "color": colorList[7]
+                            }
+                        }
+                    }, {
+                        "name": "Simulation",
+            "value":268,
+                        "symbolSize": 47,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[8],
+                                "color": colorList[8]
+                            }
+                        }
+                    }, {
+                        "name": "RPG",
+            "value":230,
+                        "symbolSize": 82,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[9],
+                                "color": colorList[9]
+                            }
+                        }
+                    }, {
+                        "name": "Atmospheric",
+            "value":221,
+                        "symbolSize": 59,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[10],
+                                "color": colorList[10]
+                            }
+                        }
+                    }, {
+                        "name": "Great Soundtrack",
+            "value":204,
+                        "symbolSize": 90,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[11],
+                                "color": colorList[11]
+                            }
+                        }
+                    }, {
+                        "name": "Sandbox",
+            "value":189,
+                        "symbolSize": 134,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[12],
+                                "color": colorList[12]
+                            }
+                        }
+                    }, {
+                        "name": "Casual",
+            "value":171,
+                        "symbolSize": 75,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[13],
+                                "color": colorList[13]
+                            }
+                        }
+                    }, {
+                        "name": "Survival",
+            "value":156,
+                        "symbolSize": 68,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[14],
+                                "color": colorList[14]
+                            }
+                        }
+                    }, {
+                        "name": "Early Access",
+            "value":155,
+                        "symbolSize": 62,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[15],
+                                "color": colorList[15]
+                            }
+                        }
+                    }, {
+                        "name": "Free to Play",
+            "value":139,
+                        "symbolSize": 114,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[16],
+                                "color": colorList[16]
+                            }
+                        }
+                    }, {
+                        "name": "Funny",
+            "value":131,
+                        "symbolSize": 130,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[17],
+                                "color": colorList[17]
+                            }
+                        }
+                    }, {
+                        "name": "Difficult",
+            "value":122,
+                        "symbolSize": 123,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[18],
+                                "color": colorList[18]
+                            }
+                        }
+                    }, {
+                        "name": "Fantasy",
+            "value":119,
+                        "symbolSize": 141,
+                        "draggable": true,
+                        "itemStyle": {
+                            "normal": {
+                                "shadowBlur": 100,
+                                "shadowColor": colorList[19],
+                                "color": colorList[19]
+                            }
+                        },
+                        "url": "https://gallery.echartsjs.com/preview.html?c=xPLngHx_Z&v=1"
+                    }]
+                }]
+            };
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+            </script>
+            <div id="container1" style="height: 100%"></div>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+            <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+            <script type="text/javascript">
+                var dom = document.getElementById("container1");
+                var myChart = echarts.init(dom);
+                var app = {};
+                option = null;
+                option = {
+                    xAxis: {},
+                    yAxis: {},
+                    series: [{
+                        symbolSize: 20,
+                        data:[[0.0, 278], [0.2, 28], [0.4, 80], [0.6, 36], [0.8, 78], [1.0, 48], [1.2, 26], [1.4, 88], [1.6, 148], [1.8, 158], [2.0, 268], [2.2, 310], [2.4, 412], [2.6, 163], [2.8, 138], [3.0, 90], [3.2, 90], [3.4, 39], [3.6, 48], [3.8, 0], [4.0, 0], [4.2, 22], [4.4, 68], [4.6, 99], [4.8, 71], [5.0, 112], [5.2, 88], [5.4, 88], [5.6, 138], [5.8, 28], [6.0, 21], [6.2, 0], [6.4, 0], [6.6, 70], [6.8, 50], [7.0, 0], [7.2, 0], [7.4, 50], [7.6, 68], [7.8, 54], [8.0, 0], [8.2, 99], [8.4, 68], [8.6, 22], [8.8, 0], [9.0, 0], [9.2, 88], [9.4, 168], 
+                [9.6, 36], [9.8, 0], [10.0, 57], [10.2, 119], [10.4, 0], [10.6, 58], [10.8, 138], [11.0, 36], [11.2, 79], [11.4, 90], [11.6, 42], [11.8, 168], [12.0, 248], [12.2, 248], [12.4, 168], [12.6, 118], [12.8, 42], [13.0, 88], [13.2, 88], [13.4, 70], [13.6, 118], [13.8, 191], [14.0, 349], [14.2, 0], [14.4, 0], [14.6, 0], [14.8, 90], [15.0, 90], [15.2, 80], [15.4, 116], [15.6, 70], [15.8, 80], [16.0, 70], [16.2, 116], [16.4, 0], [16.6, 0], [16.8, 0], [17.0, 50], [17.2, 68], [17.4, 68], [17.6, 0], [17.8, 68], [18.0, 89], [18.2, 48], [18.4, 68], [18.6, 68], [18.8, 88], [19.0, 99], [19.2, 0], [19.4, 37], [19.6, 0], [19.8, 48], [20.0, 0], [20.2, 128], [20.4, 0], [20.6, 0], [20.8, 112], [21.0, 80], [21.2, 6], [21.4, 0], [21.6, 70], [21.8, 21], [22.0, 70], [22.2, 42], [22.4, 0], [22.6, 64], [22.8, 58], [23.0, 0], [23.2, 68], [23.4, 0], [23.6, 0], [23.8, 37], [24.0, 88], [24.2, 112], [24.4, 0], [24.6, 0], [24.8, 68], [25.0, 138], [25.2, 0], [25.4, 0], [25.6, 36], [25.8, 37], [26.0, 0], [26.2, 0], [26.4, 50], [26.6, 0], [26.8, 80], [27.0, 253], [27.2, 79], [27.4, 0], [27.6, 48], [27.8, 39], [28.0, 48], [28.2, 0], [28.4, 63], [28.6, 99], [28.8, 167], [29.0, 0], [29.2, 95], [29.4, 126], [29.6, 268], [29.8, 0], [30.0, 0], [30.2, 0], [30.4, 0], [30.6, 68], [30.8, 50], [31.0, 37], [31.2, 0], [31.4, 48], [31.6, 78], [31.8, 0], [32.0, 50], [32.2, 68], [32.4, 0], [32.6, 0], [32.8, 0], [33.0, 80], [33.2, 78], [33.4, 57], [33.6, 60], [33.8, 116], [34.0, 88], [34.2, 0], [34.4, 0], [34.6, 70], [34.8, 40], [35.0, 70], [35.2, 68], [35.4, 41], [35.6, 46], [35.8, 112], [36.0, 70], [36.2, 0], [36.4, 
+                0], [36.6, 0], [36.8, 0], [37.0, 0], [37.2, 21], [37.4, 69], [37.6, 69], [37.8, 99], [38.0, 99], [38.2, 69], [38.4, 21], [38.6, 21], [38.8, 68], [39.0, 68], [39.2, 0], [39.4, 33], [39.6, 11], [39.8, 27], [40.0, 70], [40.2, 68], [40.4, 22], [40.6, 37], [40.8, 37], [41.0, 0], [41.2, 37], [41.4, 65], [41.6, 0], [41.8, 250], [42.0, 0], [42.2, 0], [42.4, 50], [42.6, 126], [42.8, 80], [43.0, 0], [43.2, 90], [43.4, 0], [43.6, 0], [43.8, 0], [44.0, 0], [44.2, 48], [44.4, 139], [44.6, 0], [44.8, 70], [45.0, 0], [45.2, 0], [45.4, 70], 
+                [45.6, 68], [45.8, 28], [46.0, 163], [46.2, 268], [46.4, 0], [46.6, 198], [46.8, 0], [47.0, 0], [47.2, 349], [47.4, 0], [47.6, 0], [47.8, 138], [48.0, 268], [48.2, 268], [48.4, 
+                298], [48.6, 0], [48.8, 159], [49.0, 68], [49.2, 88], [49.4, 200], [49.6, 68], [49.8, 0], [50.0, 0], [50.2, 18], [50.4, 98], [50.6, 78], [50.8, 36], [51.0, 99], [51.2, 83], [51.4, 198], [51.6, 68], [51.8, 0], [52.0, 22], [52.2, 37], [52.4, 50], [52.6, 43], [52.8, 0], [53.0, 0], [53.2, 99], [53.4, 99], [53.6, 82], [53.8, 70], [54.0, 0], [54.2, 90], [54.4, 37], [54.6, 50], [54.8, 0], [55.0, 78], [55.2, 322], [55.4, 119], [55.6, 68], [55.8, 22], [56.0, 15], [56.2, 0], [56.4, 0], [56.6, 0], [56.8, 80], [57.0, 70], [57.2, 116], [57.4, 50], [57.6, 0], [57.8, 228], [58.0, 0], [58.2, 120], [58.4, 116], [58.6, 48], [58.8, 39], [59.0, 68], [59.2, 112], [59.4, 133], [59.6, 0], [59.8, 24], [60.0, 24], [60.2, 26], [60.4, 0], [60.6, 0], [60.8, 99], [61.0, 35], [61.2, 116], [61.4, 192], [61.6, 36], [61.8, 0], [62.0, 0], [62.2, 70], [62.4, 0], [62.6, 0], [62.8, 42], [63.0, 50], [63.2, 0], [63.4, 116], [63.6, 28], [63.8, 28], [64.0, 40], [64.2, 37], [64.4, 169], [64.6, 90], [64.8, 60], [65.0, 88], [65.2, 90], [65.4, 191], [65.6, 0], [65.8, 68], [66.0, 88], [66.2, 0], [66.4, 33], [66.6, 129], [66.8, 0], [67.0, 80], [67.2, 0], [67.4, 48], [67.6, 70], [67.8, 0], [68.0, 99], [68.2, 48], [68.4, 112], [68.6, 0], [68.8, 0], [69.0, 0], [69.2, 36], [69.4, 48], [69.6, 88], [69.8, 68], [70.0, 50], [70.2, 70], [70.4, 126], [70.6, 163], [70.8, 80], [71.0, 114], [71.2, 125], [71.4, 68], [71.6, 29], [71.8, 36], [72.0, 100], 
+                [72.2, 90], [72.4, 13], [72.6, 68], [72.8, 129], [73.0, 0], [73.2, 88], [73.4, 42], [73.6, 128], [73.8, 248], [74.0, 188], [74.2, 209], [74.4, 119], [74.6, 43], [74.8, 58], [75.0, 98], [75.2, 28], [75.4, 48], [75.6, 116], [75.8, 142], [76.0, 36], [76.2, 6], [76.4, 90], [76.6, 0], [76.8, 0], [77.0, 111], [77.2, 0], [77.4, 22], [77.6, 70], [77.8, 36], [78.0, 35], [78.2, 192], [78.4, 70], [78.6, 70], [78.8, 24], [79.0, 90], [79.2, 68], [79.4, 0], [79.6, 0], [79.8, 80], [80.0, 78], [80.2, 70], [80.4, 88], [80.6, 0], [80.8, 43], [81.0, 19], [81.2, 268], [81.4, 116], [81.6, 37], [81.8, 57], [82.0, 103], [82.2, 88], [82.4, 0], [82.6, 116], [82.8, 34], [83.0, 0], [83.2, 68], [83.4, 22], [83.6, 36], [83.8, 68], [84.0, 36], [84.2, 89], [84.4, 0], [84.6, 79], [84.8, 50], [85.0, 18], [85.2, 32], [85.4, 80], [85.6, 69], [85.8, 37], [86.0, 29], [86.2, 34], [86.4, 40], [86.6, 80], [86.8, 58], [87.0, 68], [87.2, 36], [87.4, 36], [87.6, 0], [87.8, 163], [88.0, 0], [88.2, 99], [88.4, 70], [88.6, 158], [88.8, 80], [89.0, 0], [89.2, 78], [89.4, 41], [89.6, 0], [89.8, 256], [90.0, 37], [90.2, 80], [90.4, 0], [90.6, 37], [90.8, 37], [91.0, 22], [91.2, 32], [91.4, 32], [91.6, 22], [91.8, 66], [92.0, 116], [92.2, 11], [92.4, 62], [92.6, 70], [92.8, 0], [93.0, 48], [93.2, 36], [93.4, 37], [93.6, 70], [93.8, 90], [94.0, 90], [94.2, 0], [94.4, 0], [94.6, 30], [94.8, 0], [95.0, 0], [95.2, 41], [95.4, 42], [95.6, 42], [95.8, 68], [96.0, 21], [96.2, 70], [96.4, 0], [96.6, 68], [96.8, 48], [97.0, 18], [97.2, 36], [97.4, 100], [97.6, 133], [97.8, 48], [98.0, 70], [98.2, 48], [98.4, 48], [98.6, 80], [98.8, 0], [99.0, 50], [99.2, 0], [99.4, 339], [99.6, 26], [99.8, 68], [100.0, 0], [100.2, 0], [100.4, 0], [100.6, 0], [100.8, 0], [101.0, 116], [101.2, 0], [101.4, 0], [101.6, 138], [101.8, 0], [102.0, 50], [102.2, 98], [102.4, 50], [102.6, 89], [102.8, 68], [103.0, 0], [103.2, 298], [103.4, 68], [103.6, 28], [103.8, 69], [104.0, 0], [104.2, 49], [104.4, 120], [104.6, 70], [104.8, 0], [105.0, 50], [105.2, 48], [105.4, 90], [105.6, 60], [105.8, 36], [106.0, 0], [106.2, 68], [106.4, 62], [106.6, 48], [106.8, 42], [107.0, 28], [107.2, 36], [107.4, 36], [107.6, 36], [107.8, 50], [108.0, 70], [108.2, 48], [108.4, 36], [108.6, 0], [108.8, 0], [109.0, 28], [109.2, 28], [109.4, 36], [109.6, 37], [109.8, 0], [110.0, 88], [110.2, 70], [110.4, 116], [110.6, 68], [110.8, 68], [111.0, 68], [111.2, 133], [111.4, 70], [111.6, 68], [111.8, 70], [112.0, 70], [112.2, 70], [112.4, 68], [112.6, 68], [112.8, 36], [113.0, 103], [113.2, 108], [113.4, 70], [113.6, 68], [113.8, 37], [114.0, 37], [114.2, 19], [114.4, 0], [114.6, 70], [114.8, 78], [115.0, 0], [115.2, 70], [115.4, 68], [115.6, 0], [115.8, 70], [116.0, 168], [116.2, 80], [116.4, 0], [116.6, 15], [116.8, 33], [117.0, 28], [117.2, 0], [117.4, 0], [117.6, 80], [117.8, 0], [118.0, 68], [118.2, 0], [118.4, 0], [118.6, 68], [118.8, 203], [119.0, 98], [119.2, 103], [119.4, 18], [119.6, 36], [119.8, 48], [120.0, 36], [120.2, 0], [120.4, 0], [120.6, 78], [120.8, 99], [121.0, 99], [121.2, 139], [121.4, 0], [121.6, 95], [121.8, 0], [122.0, 37], [122.2, 45], [122.4, 36], [122.6, 88], [122.8, 0], [123.0, 48], [123.2, 68], [123.4, 199], [123.6, 68], [123.8, 78], [124.0, 0], [124.2, 68], [124.4, 88], [124.6, 168], [124.8, 118], [125.0, 0], [125.2, 26], [125.4, 32], [125.6, 0], [125.8, 0], [126.0, 23], [126.2, 70], 
+                [126.4, 49], [126.6, 0], [126.8, 0], [127.0, 0], [127.2, 116], [127.4, 36], [127.6, 70], [127.8, 78], [128.0, 116], [128.2, 138], [128.4, 100], [128.6, 59], [128.8, 248], [129.0, 99], [129.2, 59], [129.4, 8], [129.6, 0], [129.8, 78], [130.0, 37], [130.2, 18], [130.4, 115], [130.6, 0], [130.8, 0], [131.0, 70], [131.2, 0], [131.4, 0], [131.6, 48], [131.8, 98], [132.0, 28], [132.2, 0], [132.4, 108], [132.6, 108], [132.8, 168], [133.0, 268], [133.2, 108], [133.4, 199], [133.6, 199], [133.8, 36], [134.0, 0], [134.2, 0], [134.4, 224], [134.6, 349], [134.8, 143], [135.0, 68], [135.2, 36], [135.4, 159], [135.6, 99], [135.8, 36], [136.0, 0], [136.2, 0], [136.4, 184], [136.6, 228], [136.8, 268], [137.0, 60], 
+                [137.2, 68], [137.4, 70], [137.6, 249], [137.8, 158], [138.0, 47], [138.2, 0], [138.4, 112], [138.6, 62], [138.8, 90], [139.0, 0], [139.2, 95], [139.4, 50], [139.6, 41], [139.8, 402], [140.0, 98], [140.2, 142], [140.4, 298], [140.6, 6], [140.8, 36], [141.0, 90], [141.2, 0], [141.4, 68], [141.6, 0], [141.8, 0], [142.0, 70], [142.2, 0], [142.4, 68], [142.6, 90], [142.8, 37], [143.0, 0], [143.2, 0], [143.4, 70], [143.6, 116], [143.8, 90], [144.0, 70], [144.2, 0], [144.4, 80], [144.6, 199], [144.8, 57], [145.0, 90], [145.2, 58], 
+                [145.4, 42], [145.6, 0], [145.8, 70], [146.0, 37], [146.2, 98], [146.4, 0], [146.6, 0], [146.8, 80], [147.0, 22], [147.2, 50], [147.4, 116], [147.6, 90], [147.8, 36], [148.0, 90], [148.2, 48], [148.4, 90], [148.6, 103], [148.8, 0], [149.0, 21], [149.2, 37], [149.4, 116], [149.6, 0], [149.8, 162], [150.0, 0], [150.2, 88], [150.4, 138], [150.6, 20], [150.8, 116], [151.0, 0], [151.2, 0], [151.4, 0], [151.6, 68], [151.8, 122], [152.0, 180], [152.2, 0], [152.4, 18], [152.6, 50], [152.8, 21], [153.0, 37], [153.2, 0], [153.4, 11], [153.6, 48], [153.8, 37], [154.0, 37], [154.2, 68], [154.4, 101], [154.6, 28], [154.8, 149], [155.0, 99], [155.2, 42], [155.4, 0], [155.6, 0], [155.8, 58], [156.0, 0], [156.2, 80], [156.4, 0], [156.6, 181], [156.8, 305], [157.0, 34], [157.2, 80], [157.4, 0], [157.6, 70], [157.8, 48], [158.0, 116], [158.2, 0], [158.4, 36], [158.6, 50], [158.8, 19], [159.0, 66], [159.2, 178], [159.4, 0], [159.6, 0], [159.8, 36], [160.0, 112], [160.2, 36], [160.4, 414], [160.6, 138], [160.8, 0], [161.0, 0], [161.2, 390], [161.4, 349], [161.6, 59], [161.8, 60], [162.0, 299], [162.2, 68], [162.4, 0], [162.6, 121], [162.8, 0], [163.0, 50], [163.2, 48], [163.4, 88], [163.6, 0], [163.8, 0], [164.0, 0], [164.2, 0], [164.4, 21], [164.6, 0], [164.8, 0], [165.0, 70], [165.2, 0], [165.4, 68], [165.6, 21], [165.8, 127], [166.0, 0], [166.2, 70], [166.4, 18], [166.6, 22], [166.8, 49], [167.0, 103], [167.2, 0], [167.4, 99], [167.6, 68], [167.8, 7], [168.0, 36], [168.2, 36], [168.4, 78], [168.6, 48], [168.8, 36], [169.0, 70], [169.2, 48], [169.4, 0], [169.6, 0], [169.8, 48], [170.0, 36], [170.2, 0], [170.4, 68], [170.6, 25], [170.8, 116], [171.0, 58], [171.2, 0], [171.4, 0], [171.6, 15], [171.8, 68], [172.0, 36], [172.2, 68], [172.4, 0], [172.6, 0], [172.8, 90], [173.0, 322], [173.2, 0], [173.4, 88], [173.6, 298], [173.8, 99], [174.0, 308], [174.2, 37], [174.4, 70], [174.6, 37], [174.8, 70], [175.0, 26], [175.2, 37], [175.4, 37], [175.6, 37], [175.8, 37], [176.0, 90], [176.2, 120], [176.4, 65], [176.6, 78], [176.8, 248], [177.0, 78], [177.2, 70], [177.4, 48], [177.6, 36], [177.8, 126], [178.0, 36], [178.2, 0], [178.4, 50], [178.6, 48]],
+                        type: 'scatter'
+                    }]
+                };
+                ;
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }
+            </script>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-sm-flex justify-content-center justify-content-sm-between py-2">
+                <div class="four wide column">
+                <a href="#" class="item" ><b>Return to top.<b></a>
+                </div>
+                <p class="text-center text-sm-left d-block d-sm-inline-block mb-0">Group Eight.IEEE Class.sjtu </p>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- base:js -->
+  <script src="../../vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+  <script src="../../js/off-canvas.js"></script>
+  <script src="../../js/hoverable-collapse.js"></script>
+  <script src="../../js/template.js"></script>
+  <!-- endinject -->
+  <!-- plugin js for this page -->
+  <script src="../../vendors/chart.js/Chart.min.js"></script>
+  <!-- End plugin js for this page -->
+  <!-- Custom js for this page-->
+  <script src="../../js/chart.js"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>

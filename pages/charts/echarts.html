@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="echarts.js"></script>
+</head>
+<body>
+
+    <h1>开始测试</h1>
+    <hr>
+    <!-- 先准备一个用于盛放图表的容器 -->
+    <div id='container' style="width: 600px; height: 400px;"></div>
+    <script type="text/javascript">
+        // 初始化两个数组，盛装从数据库中获取到的数据
+    var id=[],names = [], prices = [];
+
+    //调用ajax来实现异步的加载数据
+        function getgames() {
+            $.ajax({
+                type: "post",
+                async: false,
+                url: "search.php",
+                data: {},
+                dataType: "json",
+                success: function(result){
+                    if(result){
+                        for(var i = 0 ; i < result.length; i++){
+                            id.push(result[i].id);
+                            names.push(result[i].game_name);
+                            prices.push(result[i].game_price);
+                        }
+                    }
+                },
+                error: function(errmsg) {
+                    alert("Ajax获取服务器数据出错了！"+ errmsg);
+                }
+            });
+        return id,names, prices;
+        }
+
+        // 执行异步请求
+        getgames();
+
+
+        // 初始化 图表对象
+            var mychart = echarts.init(document.getElementById("container"));
+            // 进行相关项的设置，也就是所谓的搭搭骨架，方便待会的ajax异步的数据填充
+            var option = {
+                title : {
+                    text : '姓名年龄分布图'
+                },
+                tooltip : {
+                    show : true
+                },
+                legend : {
+                    data : [ 'id' ]
+                },
+                xAxis : [ {
+                    data : id
+                } ],
+                yAxis : [ {
+                    type : 'value'
+                } ],
+                series : [ {
+                    "name" : "age",
+                    "type" : "bar",
+                    "data" : prices
+                } ]
+            };
+
+            // 将配置项赋给chart对象，来显示相关的数据
+            mychart.setOption(option);
+
+
+
+
+        </script>
+        <marquee>确认可以到达这里啊</marquee>
+
+        </body>
+        </html>
